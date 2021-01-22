@@ -43,7 +43,7 @@ const nonEmptyString = (props, propName, componentName) => {
 
 const Headline = (props) => {
   const theme = useTheme();
-  const HeadlineElement = props.as || props.elementType;
+  const HeadlineElement = props.as;
   return (
     <HeadlineElement
       css={headlineStyles(props, theme)}
@@ -56,38 +56,7 @@ const Headline = (props) => {
 };
 Headline.displayName = 'TextHeadline';
 Headline.propTypes = {
-  as: requiredIf(
-    PropTypes.oneOf(['h1', 'h2', 'h3']),
-    (props) => !props.elementType
-  ),
-  elementType(props, propName, componentName, ...rest) {
-    if (props[propName] != null) {
-      warnDeprecatedProp(
-        propName,
-        componentName,
-        `\n Please use "as" prop instead.`
-      );
-
-      if (props.as) {
-        return new Error(oneLine`
-          Invalid prop "${propName}" supplied to "${componentName}".
-          "${propName}" does not have any effect when "as" is defined`);
-      }
-
-      return PropTypes.oneOf(['h1', 'h2', 'h3']).isRequired(
-        props,
-        propName,
-        componentName,
-        ...rest
-      );
-    }
-    return PropTypes.oneOf(['h1', 'h2', 'h3'])(
-      props,
-      propName,
-      componentName,
-      ...rest
-    );
-  },
+  as: PropTypes.oneOf(['h1', 'h2', 'h3']).isRequired,
   title: nonEmptyString,
   truncate: PropTypes.bool,
   intlMessage: requiredIf(
@@ -99,7 +68,7 @@ Headline.propTypes = {
 
 const Subheadline = (props) => {
   const theme = useTheme();
-  const SubheadlineElement = props.as || props.elementType;
+  const SubheadlineElement = props.as;
   return (
     <SubheadlineElement
       title={props.title}
@@ -112,35 +81,7 @@ const Subheadline = (props) => {
 };
 Subheadline.displayName = 'TextSubheadline';
 Subheadline.propTypes = {
-  as: requiredIf(PropTypes.oneOf(['h4', 'h5']), (props) => !props.elementType),
-  elementType(props, propName, componentName, ...rest) {
-    if (props[propName] != null) {
-      warnDeprecatedProp(
-        propName,
-        componentName,
-        `\n Please use "as" prop instead.`
-      );
-
-      if (props.as) {
-        return new Error(oneLine`
-          Invalid prop "${propName}" supplied to "${componentName}".
-          "${propName}" does not have any effect when "as" is defined`);
-      }
-
-      return PropTypes.oneOf(['h4', 'h5']).isRequired(
-        props,
-        propName,
-        componentName,
-        ...rest
-      );
-    }
-    return PropTypes.oneOf(['h4', 'h5'])(
-      props,
-      propName,
-      componentName,
-      ...rest
-    );
-  },
+  as: PropTypes.oneOf(['h4', 'h5']).isRequired,
   isBold: PropTypes.bool,
   tone: PropTypes.oneOf([
     'primary',

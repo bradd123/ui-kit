@@ -85,7 +85,7 @@ export const bodyStyles = (props, theme) => css`
 export const headlineStyles = (props, theme) => css`
   ${getBaseStyles(props, theme)}
   margin: 0;
-  font-size: ${getElementFontSize(props.as || props.elementType)};
+  font-size: ${getElementFontSize(props.as)};
   font-weight: 300;
   ${props.truncate && truncate}
 `;
@@ -93,7 +93,7 @@ export const headlineStyles = (props, theme) => css`
 export const subheadlineStyles = (props, theme) => css`
   ${getBaseStyles(props, theme)}
   margin: 0;
-  font-size: ${getElementFontSize(props.as || props.elementType)};
+  font-size: ${getElementFontSize(props.as)};
   font-weight: normal;
   ${props.truncate && truncate}
   ${props.isBold && bold}
